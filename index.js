@@ -34,14 +34,13 @@ function closeModal(){
 function renderCat(){
     const catObject = getSingleCatObject()
     const catObjects = getMatchingCatsArray()
-    console.log(catObjects)
     memeModalInner.innerHTML = ""
     if(document.querySelector('#all-images:checked')) {
         for(let cat of catObjects) {
             memeModalInner.innerHTML +=  `
         <img 
         class="cat-img-all" 
-        src="images/${cat.image}"
+        src="./images/${cat.image}"
         alt="${cat.alt}"
         >
         `
@@ -55,7 +54,7 @@ function renderCat(){
         memeModalInner.innerHTML =  `
             <img 
             class="cat-img-one" 
-            src="images/${catObject.image}"
+            src="./images/${catObject.image}"
             alt="${catObject.alt}"
             >
             `
