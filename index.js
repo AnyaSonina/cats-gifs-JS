@@ -4,14 +4,19 @@ const emotionRadios = document.getElementById('emotion-radios')
 const getImageBtn = document.getElementById('get-image-btn')
 const gifsOnlyOption = document.getElementById('gifs-only-option')
 const memeModalInner = document.getElementById('meme-modal-inner')
-const memeModal = document.getElementById('meme-modal')
-const memeModalCloseBtn = document.getElementById('meme-modal-close-btn')
+const memeModal = document.querySelector('#meme-modal')
+const bodyContainer = document.getElementById("body_container")
 
 emotionRadios.addEventListener('change', highlightCheckedOption)
 
-memeModalCloseBtn.addEventListener('click', closeModal)
+
+document.addEventListener("click", function(e) {
+    if(!e.target.closest("#meme-modal-inner") && !e.target.closest('#get-image-btn'))
+    closeModal()
+})
 
 getImageBtn.addEventListener('click', renderCat)
+
 
 function highlightCheckedOption(e){
     const radios = document.getElementsByClassName('radio')
@@ -23,19 +28,46 @@ function highlightCheckedOption(e){
 
 function closeModal(){
     memeModal.style.display = 'none'
+    bodyContainer.style.backgroundColor = "#fff"
 }
 
 function renderCat(){
     const catObject = getSingleCatObject()
-    memeModalInner.innerHTML =  `
+    const catObjects = getMatchingCatsArray()
+    console.log(catObjects)
+    memeModalInner.innerHTML = ""
+    if(document.querySelector('#all-images:checked')) {
+        for(let cat of catObjects) {
+            memeModalInner.innerHTML +=  `
         <img 
-        class="cat-img" 
-        src="./images/${catObject.image}"
-        alt="${catObject.alt}"
+        class="cat-img-all" 
+        src="./images/${cat.image}"
+        alt="${cat.alt}"
         >
         `
-    memeModal.style.display = 'flex'
+        memeModal.style.display = 'grid'
+        memeModal.classList.add("meme-modal-all")
+        memeModalInner.classList.add("grid")
+       
+        }
+    } else {
+
+        memeModalInner.innerHTML =  `
+            <img 
+            class="cat-img-one" 
+            src="./images/${catObject.image}"
+            alt="${catObject.alt}"
+            >
+            `
+        memeModal.style.display = 'flex'
+        memeModal.classList.remove("meme-modal-all")
+        memeModal.classList.add("meme-modal-one")
+    }
+    
+   
+    bodyContainer.style.backgroundColor = "#CAC3C5"
 }
+
 
 function getSingleCatObject(){
     const catsArray = getMatchingCatsArray()
@@ -99,7 +131,6 @@ function renderEmotionsRadios(cats){
 }
 
 renderEmotionsRadios(catsData)
-
 
 
 
