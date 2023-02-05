@@ -39,7 +39,7 @@ function renderCat(){
         for(let cat of catObjects) {
             memeModalInner.innerHTML +=  `
         <img 
-        class="cat-img-all" 
+        class="cat-img" 
         src="/images/${cat.image}"
         alt="${cat.alt}"
         >
@@ -53,7 +53,7 @@ function renderCat(){
 
         memeModalInner.innerHTML =  `
             <img 
-            class="cat-img-one" 
+            class="cat-img" 
             src="/images/${catObject.image}"
             alt="${catObject.alt}"
             >
