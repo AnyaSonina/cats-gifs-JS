@@ -45,6 +45,7 @@ function renderCat(){
         >
         `
         memeModal.style.display = 'grid'
+        memeModal.classList.remove("meme-modal-one")
         memeModal.classList.add("meme-modal-all")
         memeModalInner.classList.add("grid")
        
@@ -58,6 +59,7 @@ function renderCat(){
             alt="${catObject.alt}"
             >
             `
+        memeModalInner.classList.remove("grid")
         memeModal.style.display = 'flex'
         memeModal.classList.remove("meme-modal-all")
         memeModal.classList.add("meme-modal-one")
