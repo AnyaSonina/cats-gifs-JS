@@ -40,7 +40,7 @@ function renderCat(){
             memeModalInner.innerHTML +=  `
         <img 
         class="cat-img-all" 
-        src="static/images/${cat.image}"
+        src="/images/${cat.image}"
         alt="${cat.alt}"
         >
         `
@@ -54,7 +54,7 @@ function renderCat(){
         memeModalInner.innerHTML =  `
             <img 
             class="cat-img-one" 
-            src="static/images/${catObject.image}"
+            src="/images/${catObject.image}"
             alt="${catObject.alt}"
             >
             `
